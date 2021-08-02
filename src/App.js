@@ -1,4 +1,5 @@
 import React from 'react';
+import TodoList from './components/TodoList.js'
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -25,9 +26,7 @@ class App extends React.Component {
 
   render() {
     return (
-      this.state.todos.map(todo => {
-        return <div>{todo.task} {todo.id} {todo.completed ? "DONE" : "TODO"}</div>
-      })
+      <TodoList todos={this.state.todos} />
     );
   }
 }
