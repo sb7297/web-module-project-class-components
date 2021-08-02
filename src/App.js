@@ -62,7 +62,7 @@ class App extends React.Component {
   }
 
   render() {
-    return (<div className="max-w-lg mx-auto bg-pink-50">
+    return (<div className="max-w-lg mx-auto mt-4">
       <TodoList todos={this.state.todos} toggleTodoById={this.toggleTodoById} />
       <TodoForm
         handleFormSubmit={this.handleFormSubmit}
