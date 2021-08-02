@@ -46,6 +46,8 @@ class App extends React.Component {
     ev.preventDefault();
     const text = this.state.input;
     
+    if (text === '') return;
+    
     this.setState({
       ...this.state,
       todos: [ ...this.state.todos, {task: text, id: Date.now(), completed: false} ],
