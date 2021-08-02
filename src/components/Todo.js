@@ -2,7 +2,7 @@ import React from 'react';
 
 class Todo extends React.Component {
   render() {
-    const { todo } = this.props;
+    const { todo, toggleTodo } = this.props;
 
     const styles = {
       textDecoration: todo.completed ? 'line-through' : 'none',
@@ -10,7 +10,7 @@ class Todo extends React.Component {
     }
 
     return (
-      <div key={todo.id} className="todo-item" style={styles}>
+      <div className="todo-item" style={styles} onClick={toggleTodo}>
         {todo.task} 
       </div>
     );

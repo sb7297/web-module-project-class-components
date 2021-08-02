@@ -23,10 +23,21 @@ class App extends React.Component {
       ]
     };
   }
+  
+  toggleTodoById = (id) => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        return todo.id === id 
+        ? {...todo, completed: !todo.completed}
+        : todo
+      })
+    }
+    );
+  }
 
   render() {
     return (
-      <TodoList todos={this.state.todos} />
+      <TodoList todos={this.state.todos} toggleTodoById={this.toggleTodoById} />
     );
   }
 }

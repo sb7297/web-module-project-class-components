@@ -3,10 +3,10 @@ import Todo from './Todo.js'
 
 class TodoList extends React.Component {
   render() {
-    const { todos } = this.props;
+    const { todos, toggleTodoById } = this.props;
 
     return (
-      todos.map(todo => <Todo todo={todo} />)
+      todos.map(todo => <Todo key={todo.id} todo={todo} toggleTodo={() => toggleTodoById(todo.id)} />)
     );
   }
 }
