@@ -54,6 +54,12 @@ class App extends React.Component {
       input: ''
     });
   }
+  
+  handleClearCompleted = () => {
+    this.setState({
+      todos: this.state.todos.filter(todo => !todo.completed)
+    });
+  }
 
   render() {
     return (<>
@@ -61,6 +67,7 @@ class App extends React.Component {
       <TodoForm
         handleFormSubmit={this.handleFormSubmit}
         handleInputChange={this.handleInputChange}
+        handleClearCompleted={this.handleClearCompleted}
         input={this.state.input}
       />
     </>);
