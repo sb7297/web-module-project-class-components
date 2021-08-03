@@ -9,8 +9,15 @@ class App extends React.Component {
   
   constructor() {
     super();
+    let stored_todos_json = localStorage.getItem('todos');
+    let stored_todos;
+    try {
+      stored_todos = JSON.parse(stored_todos_json);
+    } catch {
+      stored_todos = null;
+    }
     this.state = {
-      todos: [
+      todos: stored_todos ? stored_todos : [
         {
           task: "Vacuum the kitchen",
           id: Date.now() - 10,
@@ -24,18 +31,20 @@ class App extends React.Component {
       ],
       input: ""
     };
+    localStorage.setItem('todos', JSON.stringify(this.state.todos));
   }
   
   toggleTodoById = (id) => {
-    this.setState({
-      ...this.state,
+    const newState = {
       todos: this.state.todos.map(todo => {
         return todo.id === id 
         ? {...todo, completed: !todo.completed}
         : todo
       })
-    }
-    );
+    };
+
+    this.setState(newState);
+    localStorage.setItem('todos', JSON.stringify(newState.todos)); 
   }
   
   handleInputChange = (ev) => {
@@ -48,17 +57,22 @@ class App extends React.Component {
     
     if (text === '') return;
     
-    this.setState({
-      ...this.state,
+    const newState = {
       todos: [ ...this.state.todos, {task: text, id: Date.now(), completed: false} ],
       input: ''
-    });
+    };
+
+    this.setState(newState);
+    localStorage.setItem('todos', JSON.stringify(newState.todos)); 
   }
   
   handleClearCompleted = () => {
-    this.setState({
+    const newState = {
       todos: this.state.todos.filter(todo => !todo.completed)
-    });
+    };
+
+    this.setState(newState);
+    localStorage.setItem('todos', JSON.stringify(newState.todos)); 
   }
 
   render() {
